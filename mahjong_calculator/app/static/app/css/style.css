@@ -1,0 +1,315 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fef5ed;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 16px;
+}
+
+.parts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 15px 30px;
+}
+
+.top_header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 32px 0px;
+  margin-bottom: 32px;
+  background-image: url("../images/mahjong_header.png");
+  background-size: cover;
+}
+
+.header_title {
+  background-color: #d3e4cdcc;
+  padding: 8px 16px;
+}
+
+.app_title {
+  font-family: "Hiragino Mincho ProN";
+  font-weight: bold;
+  font-size: 32px;
+  padding: 16px;
+}
+
+.page_title {
+  font-family: "Hiragino Mincho ProN";
+  font-size: 36px;
+  padding: 16px;
+}
+
+.form_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
+
+.form_block {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  border-bottom: none;
+  background-color: #d3e4cd;
+  width: 100%;
+  padding: 8px 16px;
+}
+
+.form_block_bottom {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  background-color: #d3e4cd;
+  width: 100%;
+  padding: 8px 16px;
+}
+
+.form_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 4px 4px;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 18px;
+  margin: 12px 8px;
+}
+
+.form_title {
+  font-size: 18px;
+  padding: 4px 8px;
+}
+
+.input {
+  display: inline-block;
+  border: 1px solid #99a799;
+  border-radius: 4px;
+  background-color: #fefefe;
+  width: 120px;
+  height: 24px;
+  padding: 4px 8px;
+}
+
+.pulldown {
+  border: 1px solid #99a799;
+  border-radius: 4px;
+  background-color: #fefefe;
+  width: 108px;
+  height: 24px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.checkbox {
+  border: 1px solid #99a799;
+  border-radius: 4px;
+  background-color: #fefefe;
+  width: 18px;
+  height: 18px;
+  margin: 0px 8px;
+}
+
+.tile_select_wrapper {
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.tile_selected {
+  margin: 0px 4px;
+}
+
+.image_selection {
+  height: 36px;
+  margin: 1px 2px;
+}
+
+.image_selected {
+  height: 36px;
+  margin: 1px 0px;
+}
+
+.tab {
+  width: 100%;
+}
+
+.tab > input[type="radio"],
+.tile_tab > input[type="radio"] {
+  display: none;
+}
+
+.tab_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 8px 12px;
+}
+
+.win_drawn_btn {
+  border: 1px solid #99a799;
+  border-radius: 2px;
+  background-color: #fefefe;
+  width: 120px;
+  padding: 8px 12px;
+}
+
+.tile_tab_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  width: 100%;
+  column-gap: 4px;
+}
+
+.tile_tab_btn {
+  color: #fefefe;
+  background-color: #99a799;
+  size: auto;
+  padding: 8px 12px;
+}
+
+.tab_contents,
+.tile_tab_contents {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
+}
+
+.tab_content {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 480px;
+}
+
+.tile_select_content {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  background-color: #adc2a9;
+  width: 100%;
+  padding: 8px;
+}
+
+.tile_selected_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #adc2a9;
+  width: 100%;
+  height: 48px;
+  padding: 4px;
+  margin: 4px 0px;
+}
+
+.tab > #win:checked ~ .tab_buttons > label[for="win"],
+.tab > #drawn:checked ~ .tab_buttons > label[for="drawn"] {
+  position: relative;
+  z-index: 2;
+  color: #fefefe;
+  background-color: #adc2a9;
+}
+
+.tile_tab > #closed:checked ~ .tile_tab_buttons > label[for="closed"],
+.tile_tab > #melted:checked ~ .tile_tab_buttons > label[for="melted"],
+.tile_tab > #win_tile:checked ~ .tile_tab_buttons > label[for="win_tile"],
+.tile_tab > #dora:checked ~ .tile_tab_buttons > label[for="dora"] {
+  position: relative;
+  z-index: 2;
+  color: #fefefe;
+  background-color: #adc2a9;
+}
+
+.tab > #win:checked ~ .tab_contents > .tab_content:nth-of-type(2),
+.tab > #drawn:checked ~ .tab_contents > .tab_content:nth-of-type(3),
+.tile_tab
+  > #closed:checked
+  ~ .tile_tab_contents
+  > .tile_select_content:nth-of-type(1),
+.tile_tab
+  > #melted:checked
+  ~ .tile_tab_contents
+  > .tile_select_content:nth-of-type(2),
+.tile_tab
+  > #win_tile:checked
+  ~ .tile_tab_contents
+  > .tile_select_content:nth-of-type(3),
+.tile_tab
+  > #dora:checked
+  ~ .tile_tab_contents
+  > .tile_select_content:nth-of-type(4) {
+  display: flex;
+}
+
+.calc_bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 1;
+  bottom: 64px;
+  width: 60%;
+}
+
+.button_primary {
+  border: 1px solid #99a799;
+  border-radius: 4px;
+  background-color: #d3e4cd;
+  width: 100px;
+  padding: 8px 12px 8px 12px;
+  margin: 16px;
+}
+
+.button_simple {
+  border: 1px solid #99a799;
+  border-radius: 4px;
+  background-color: #fefefe;
+  padding: 8px 12px 8px 12px;
+  margin: 16px;
+}
+
+.button_simple:hover {
+  background-color: #99a799;
+  color: #fefefe;
+}
+
+.button_primary:hover {
+  background-color: #99a799;
+  color: #fefefe;
+}
+
+.space_48 {
+  height: 48px;
+}

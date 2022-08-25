@@ -1,0 +1,62 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<div class="content">
+
+    {% if game_end == "no" %}
+
+        <div class='parts'>
+            <h2>{{ hand_id }}</h2>
+        </div>
+
+    {% endif %}
+
+    {% if game_end == "yes" %}
+
+        <div class='parts'>
+            <h2>終局</h2>
+        </div>
+
+    {% endif %}
+
+    
+    <div class='parts'>
+
+        {% for player in players %}
+
+            <h3>{{ player.0 }} ： {{ player.1 }} 点</h3>
+
+        {% endfor %}
+
+    </div>
+    
+
+
+    {% if game_end == "no" %}
+
+        <div class='container' style = 'width: 40%; margin-left: auto; margin-right: auto;'>
+            <div class='row'>
+
+                <div class='col-sm'>
+                    <a class='btn btn-outline-primary' href = "{% url 'app:top' %}" role='button'>対局終了</a>
+                </div>
+
+                <div class='col-sm'>
+                    <a class='btn btn-outline-primary' href = "{% url 'app:score_calc' table_id next_id %}" role='button'>次局へ</a>
+                </div>
+
+            </div>
+        </div>
+
+    {% endif %}
+
+    {% if game_end == "yes" %}
+
+        <a class='btn btn-outline-primary' href = "{% url 'app:top' %}" role='button'>対局終了</a>
+
+    {% endif %}
+
+    
+</div>
+
+{% endblock %}

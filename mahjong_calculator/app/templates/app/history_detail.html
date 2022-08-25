@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<div class="content">
+
+    <div class='parts'>
+
+        <h2>履歴詳細</h2>
+
+    </div>
+
+
+    <div class = 'parts'>
+        <table class = 'table table-hover'>
+
+            <thead class = 'thead-light'>
+                <tr>
+                    <th scope = 'col'>局</th>
+                    <th scope = 'col'>和了者</th>
+                    <th scope = 'col'>放銃者</td>
+                    <th scope = 'col'>和了点</td>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for hand in hands %}
+
+                    <tr>
+                        <th>{{ hand.hand_id }}</th>
+                        <td>{{ hand.winner }}</td>
+                        <td>{{ hand.loser }}</td>
+                        <td>{{ hand.move_score }}</td>
+                    </tr>
+                
+                {% endfor %}
+                
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

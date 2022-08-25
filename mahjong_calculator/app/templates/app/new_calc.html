@@ -1,0 +1,71 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+{% load widget_tweaks %}
+
+<div class="container">
+
+    <h2 class="page_title">対局設定</h2>
+
+    <form class="form_wrapper" action="{% url 'app:new_calc' %}" method="POST">{% csrf_token %}
+
+        <div class="form_row">
+            <div class="form">
+                <p class="form_title">局数</p>
+                {{ form.game_type | add_class:"pulldown" }}
+            </div>
+        </div>
+
+        <div class="form_row">
+            <div class="form">
+                <p class="form_title">東家</p>
+                {{ form.player1 | add_class:"input" }}
+            </div>
+            <div class="form">
+                <p class="form_title">南家</p>
+                {{ form.player2 | add_class:"input" }}
+            </div>
+            <div class="form">
+                <p class="form_title">西家</p>
+                {{ form.player3 | add_class:"input" }}
+            </div>
+            <div class="form">
+                <p class="form_title">北家</p>
+                {{ form.player4 | add_class:"input" }}
+            </div>
+        </div>
+
+        <div class="space_48"></div>
+
+        <div class="form_row">
+            <div class="form">
+                <p class="form_title">持ち点</p>
+                {{ form.default_score | add_class:"input" }}
+            </div>
+        </div>
+        <div class="form_row">
+            <div class="form">
+                {{ form.is_bankruptcy | add_class:"checkbox" }}
+                <p class="form_title">飛び終了あり</p>
+            </div>
+        </div>
+        <div class="form_row">
+            <div class="form">
+                {{ form.is_kuitan | add_class:"checkbox" }}
+                <p class="form_title">喰いタンあり</p>
+            </div>
+        </div>
+
+        <div class="calc_bottom">
+    
+            <button class="button_simple" href="{% url 'app:top' %}">対局終了</button>
+
+            <button type="submit" class="button_simple">次へ</button>
+    
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

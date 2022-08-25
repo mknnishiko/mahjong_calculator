@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<div class="content">
+
+    <div class='parts'>
+
+        <h2>プレイヤー新規追加</h2>
+
+    </div>
+
+
+    <div class = 'parts'>
+
+        <form action = "{% url 'app:new_player' %}" method = "POST">{% csrf_token %}
+            <table class = 'table' style = 'width: 40%; margin-left: auto; margin-right: auto;'>
+
+                <tr>
+                    <th>名前</th>
+                    <td>{{ form.name }}</td>
+                </tr>
+            
+            </table>
+
+            <button type = "submit" class = 'btn btn-outline-primary'>追加</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

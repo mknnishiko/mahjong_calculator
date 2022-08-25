@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<div class="content">
+
+    <h2>{{ hand_id }}</h2>
+
+
+    <div class='container' style = 'width: 40%; margin-left: auto; margin-right: auto;'>
+        <div class='row'>
+
+            <div class='col-sm'>
+                <h3>{{ hand.winner }}</h3>
+            </div>
+
+            <div class='col-sm'>
+                <h3>{{ hand.move_score }} 点</h3>
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <div class='container' style = 'width: 80%; margin-left: auto; margin-right: auto;'>
+        <div class='row'>
+
+            <div class='col-sm'>
+                <a class='btn btn-outline-primary' href = "{% url 'app:top' %}" role='button'>対局を終了する</a>
+            </div>
+
+            <div class='col-sm'>
+                <a class='btn btn-outline-primary' href = "{% url 'app:show_ranking' %}" role='button'>次へ</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

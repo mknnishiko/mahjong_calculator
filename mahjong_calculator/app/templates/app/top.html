@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %}
+{% block content %}
+{% load static %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="{% static 'app/js/uekara.js' %}"></script>
+
+<header class="top_header">
+
+    <div class="header_title">
+        <h1 class="app_title">Mahjong Calculator</h1>
+    </div>
+
+</header>
+
+<div class="container">
+
+    <div class="parts">
+        <p>麻雀の点数計算ができますが点数計算はできません。ご容赦。</p>
+        <a href="{% url 'app:new_calc' %} "><button class="button_primary">対局開始</button></a>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,174 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+{% load static %}
+{% load widget_tweaks %}
+
+<div class="container">
+
+    <h2 class="page_title">{{ hand_name }}</h2>
+
+    <form id="input_tile" class="form_wrapper" action="{% url 'app:hand_calc' %}" method="POST">{% csrf_token %}
+
+        <div class="tab">
+            <input type="radio" name="win_drawn_tab" id="win" checked>
+            <input type="radio" name="win_drawn_tab" id="drawn">
+
+            <div class="tab_buttons">
+                <label class="win_drawn_btn" for="win">和了</label>
+                <label class="win_drawn_btn" for="drawn">流局</label>
+            </div>
+
+            <div class="tab_contents">
+
+                <div class="form_block">
+                <p class="form_title">立直者</p>
+                    <div class="form_row">
+                        {% for player in players %}
+                            <div class="form">
+                                <label class="form_title"><input type="checkbox" id="ready_player" name="ready_player" value={{player}}>{{player}}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="tab_content ">
+                    <div class="flex_column">
+
+                        <div class="form_block">
+                            <div class="form_row">
+                                <div class="form">
+                                    <p class="form_title">和了者</p>
+                                    <select class="pulldown" name="winner">
+                                        <option value="">---------</option>
+                                        {% for player in players %}
+                                            <option value="{{player}}">{{player}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form">
+                                    <p class="form_title">放銃者<p>
+                                    <select class="pulldown" name="loser">
+                                        <option value="">---------</option>
+                                        {% for player in players %}
+                                            <option value="{{player}}">{{player}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form_block">
+                            <div class="form_row">
+                                <div class="form">
+                                    <p class="form_title">　和了</p>
+                                    {{ form.pick | add_class:"pulldown" }}
+                                </div>
+                                <div class="form">
+                                    <p class="form_title">　立直</p>
+                                    {{ form.ready | add_class:"pulldown" }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form_block_bottom">
+
+                            <div class="tile_selected_row">
+                                <div>
+                                    <div class="tile_selected">
+                                        <img class="image_selected" @click="deleteClosed(index)" v-for="(item, index) in closedTiles" :src="item.url" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="tile_selected">
+                                        <img class="image_selected" @click="deleteMelted(item.id)" v-for="(item, index) in meltedTiles" :src="item.url" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="tile_selected">
+                                        <img class="image_selected" @click="deleteWin(item.id)" v-for="(item, index) in winTile" :src="item.url" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="tile_selected">
+                                        <img class="image_selected" @click="deleteDora(item.id)" v-for="(item, index) in doraTiles" :src="item.url" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tile_tab">
+                                
+                                <input type="radio" name="tile_select_tab" id="closed" checked>
+                                <input type="radio" name="tile_select_tab" id="melted">
+                                <input type="radio" name="tile_select_tab" id="win_tile">
+                                <input type="radio" name="tile_select_tab" id="dora">
+
+                                <div class="tile_tab_buttons">
+                                    <label class="tile_tab_btn" for="closed">手牌</label>
+                                    <label class="tile_tab_btn" for="melted">副露牌</label>
+                                    <label class="tile_tab_btn" for="win_tile">和了牌</label>
+                                    <label class="tile_tab_btn" for="dora">ドラ牌</label>
+                                </div>
+
+                                <div class="tile_tab_contents">
+                                    <div class="tile_select_content">
+                                        <div class="tile_select_wrapper">
+                                            <img class="image_selection" @click="addClosed(item.id)" v-for="(item, index) in tiles" :src="item.url" />
+                                        </div>
+                                    </div>
+                                    <div class="tile_select_content">
+                                        <div class="tile_select_wrapper">
+                                            <img class="image_selection" @click="addMelted(item.id)" v-for="(item, index) in tiles" :src="item.url" />
+                                        </div>
+                                    </div>
+                                    <div class="tile_select_content">
+                                        <div class="tile_select_wrapper">
+                                            <img class="image_selection" @click="addWin(item.id)" v-for="(item, index) in tiles" :src="item.url" />
+                                        </div>
+                                    </div>
+                                    <div class="tile_select_content">
+                                        <div class="tile_select_wrapper">
+                                            <img class="image_selection" @click="addDora(item.id)" v-for="(item, index) in tiles" :src="item.url" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab_content">
+
+                    <div class="form_block_bottom">
+                        <p class="form_title">聴牌者</p>
+                        <div class="form_row">
+                            {% for player in players %}
+                                <div class="form">
+                                    <input type="checkbox" id="waiting_player" name={{player}} value={{player}}>
+                                    <label class="form_title" for={{player}}>{{player}}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        
+        </div>
+
+        <input type="hidden" name="hand_id" value={{hand_id}}>
+        <input type="hidden" name="input_tiles" :value="query()">
+
+        <div class="calc_bottom">
+            <button class="button_simple" href="{% url 'app:top' %}">対局終了</button>
+            <button @click="query" type="submit" class="button_simple">次へ</button>
+        </div>
+
+    </form>
+
+</div>
+<script language="javascript" type="text/javascript" src="{% static 'app/js/input_tile.js' %}"></script>
+
+{% endblock %}

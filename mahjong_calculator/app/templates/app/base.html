@@ -1,0 +1,30 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!doctype html>
+
+<html>
+
+    <head>
+
+        <meta charset="utf-8"/>
+
+        <title>MahjongCalculator</title>
+    
+        <!-- reset.css 適用 -->
+        <link rel="stylesheet" type="text/css" href="{% static 'app/css/reset.css' %}">
+        <!-- style.css 読込 -->
+        <link rel="stylesheet" type="text/css" href="{% static 'app/css/style.css' %}">
+        <!-- Vue.js 読込 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    </head>
+
+    <body>
+
+        {% block content %}
+        {% endblock %}
+
+    </body>
+
+</html>
